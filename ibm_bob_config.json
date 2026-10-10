@@ -1,0 +1,37 @@
+{
+  "mcpServers": {
+    "wxdi-mcp-server": {
+      "command": "uvx",
+      "args": [
+        "ibm-watsonx-data-intelligence-mcp-server",
+        "--transport",
+        "stdio"
+      ],
+      "env": {
+        "DI_SERVICE_URL": "https://api.au-syd.dai.cloud.ibm.com",
+        "DI_APIKEY": "${IBM_API_KEY}",
+        "DI_ENV_MODE": "SaaS",
+        "LOG_FILE_PATH": "E:/ultron-memory/logs/ibm-watsonx-mcp.log"
+      }
+    }
+  },
+  "local_knowledge": {
+    "nexus_core_path": "E:/ultron-memory/nexus-core",
+    "nexus_data_exports": "E:/ultron-memory/exports",
+    "nexus_db": "E:/ultron-memory/nexus-core/data/nexus.db",
+    "chroma_db": "E:/ultron-memory/nexus-core/data/chroma",
+    "rag_vectors": "E:/ultron-memory/vectors"
+  },
+  "ibm_bob": {
+    "data_source": "nexus_core_local",
+    "sync_interval_seconds": 3600,
+    "auto_enrich": true,
+    "grounding_model": "meta-llama/llama-3-8b-instruct"
+  },
+  "watsonx_orchestrate": {
+    "agent_name": "throne_orchestrator",
+    "knowledge_base": "E:/ultron-memory/nexus-core",
+    "export_format": "jsonl",
+    "schedule": "0 */6 * * *"
+  }
+}
